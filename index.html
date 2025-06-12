@@ -19,14 +19,12 @@
             --accent-color: #ff6b6b;
             --success-color: #4ecdc4;
         }
-
         /* Basic global styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Inter', sans-serif;
             background: var(--dark-gradient);
@@ -41,7 +39,6 @@
             user-select: none;
             -webkit-tap-highlight-color: transparent;
         }
-
         /* Animated background */
         body::before {
             content: '';
@@ -57,12 +54,10 @@
             z-index: -1;
             animation: backgroundShift 20s ease-in-out infinite;
         }
-
         @keyframes backgroundShift {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.8; }
         }
-
         /* Warning overlay styles */
         .warning-overlay {
             position: fixed;
@@ -82,7 +77,6 @@
             font-weight: bold;
             padding: 2rem;
         }
-
         /* Navbar styles */
         .navbar {
             display: flex;
@@ -97,11 +91,9 @@
             z-index: 100;
             transition: all 0.3s ease;
         }
-
         .navbar:hover {
             background: rgba(12, 12, 12, 0.9);
         }
-
         .logo {
             font-size: 1.8rem;
             font-weight: 800;
@@ -116,13 +108,11 @@
             display: flex;
             align-items: center;
         }
-
         .nav-links {
             display: flex;
             align-items: center;
             gap: 2rem;
         }
-
         .nav-links a {
             color: var(--text-secondary);
             text-decoration: none;
@@ -135,7 +125,6 @@
             display: flex;
             align-items: center;
         }
-
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -146,16 +135,13 @@
             background: var(--primary-gradient);
             transition: width 0.3s ease;
         }
-
         .nav-links a:hover {
             color: var(--text-primary);
             background: rgba(255, 255, 255, 0.1);
         }
-
         .nav-links a:hover::after {
             width: 100%;
         }
-
         /* Mobile menu toggle button */
         .mobile-menu-toggle {
             display: none;
@@ -170,7 +156,13 @@
             align-items: center;
             justify-content: center;
         }
-
+        /* Show toggle on mobile */
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: flex;
+            }
+        }
+        /* Search bar styles */
         .search-bar {
             padding: 0.7rem 1rem;
             border-radius: 50px;
@@ -182,21 +174,16 @@
             transition: all 0.3s ease;
             font-family: inherit;
             min-height: 44px;
-            display: flex;
-            align-items: center;
         }
-
         .search-bar::placeholder {
             color: var(--text-secondary);
         }
-
         .search-bar:focus {
             outline: none;
             border-color: var(--accent-color);
             box-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
             transform: scale(1.02);
         }
-
         /* Banner styles */
         .banner {
             height: 70vh;
@@ -209,7 +196,6 @@
             margin-bottom: 3rem;
             background-image: linear-gradient(45deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.8) 100%);
         }
-
         .banner::before {
             content: '';
             position: absolute;
@@ -219,13 +205,11 @@
             bottom: 0;
             background: linear-gradient(45deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.8) 100%);
         }
-
         .banner-content {
             position: relative;
             z-index: 2;
             max-width: 600px;
         }
-
         .banner h1 {
             font-size: 3.5rem;
             font-weight: 800;
@@ -236,20 +220,17 @@
             background-clip: text;
             line-height: 1.2;
         }
-
         .banner-description {
             font-size: 1.2rem;
             color: var(--text-secondary);
             margin-bottom: 2rem;
             line-height: 1.6;
         }
-
         .banner-buttons {
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
         }
-
         .btn {
             padding: 0.8rem 2rem;
             border-radius: 50px;
@@ -264,37 +245,30 @@
             gap: 0.5rem;
             font-family: inherit;
             min-height: 48px;
-            touch-action: manipulation;
         }
-
         .btn-primary {
             background: var(--primary-gradient);
             color: white;
             box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
         }
-
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
         }
-
         .btn-secondary {
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
             color: var(--text-primary);
             border: 1px solid var(--glass-border);
         }
-
         .btn-secondary:hover {
             background: rgba(255, 255, 255, 0.2);
             transform: translateY(-2px);
         }
-
         /* Content sections */
         .section {
             margin: 4rem 2rem;
         }
-
         .section h2 {
             font-size: 2rem;
             font-weight: 700;
@@ -304,26 +278,34 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
-        /* VERTICAL LAYOUT - Changed from flex to grid */
+        /* VERTICAL LAYOUT - Changed from flex to grid for mobile */
         .content-row {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 1.5rem;
             padding: 1rem 0;
-            /* Removed overflow-x: auto for vertical layout */
         }
-
+        /* Adjust for mobile: Make content rows single column on very small screens */
+        @media (max-width: 768px) {
+            .content-row {
+                grid-template-columns: 1fr;
+            }
+        }
+        /* Content card styles */
         .content-card {
-            /* Removed min-width since grid handles sizing */
             cursor: pointer;
             transition: all 0.4s ease;
             position: relative;
             border-radius: 15px;
             overflow: hidden;
-            touch-action: manipulation;
         }
-
+        /* Fix height for mobile cards to approximately fit stacked layout */
+        @media(max-width:768px){
+            .content-card {
+                height: auto;
+            }
+        }
+        /* Image styles */
         .content-card img {
             width: 100%;
             height: 300px;
@@ -331,15 +313,18 @@
             border-radius: 15px;
             transition: all 0.4s ease;
         }
-
+        /* For mobile, let images adapt */
+        @media(max-width:768px){
+            .content-card img {
+                height: auto;
+            }
+        }
         .content-card:hover {
             transform: scale(1.05) translateY(-10px);
         }
-
         .content-card:hover img {
             filter: brightness(1.2) saturate(1.2);
         }
-
         .content-card::after {
             content: '';
             position: absolute;
@@ -352,11 +337,9 @@
             transition: opacity 0.3s ease;
             border-radius: 15px;
         }
-
         .content-card:hover::after {
             opacity: 1;
         }
-
         /* Modal styles */
         .modal {
             position: fixed;
@@ -373,12 +356,10 @@
             animation: fadeIn 0.3s ease;
             padding: 1rem;
         }
-
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-
         .modal-content {
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
@@ -392,29 +373,31 @@
             position: relative;
             animation: slideUp 0.4s ease;
         }
-
         @keyframes slideUp {
             from { transform: translateY(50px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
-
         .modal-header {
             display: flex;
             align-items: flex-start;
             gap: 2rem;
-            margin-bottom: 2rem;
+            flex-wrap: wrap;
         }
-
         .modal-poster {
             width: 200px;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
-
+        /* Fix size for mobile modal posters */
+        @media(max-width:768px){
+            .modal-poster {
+                width: 150px;
+                height: auto;
+            }
+        }
         .modal-info {
             flex: 1;
         }
-
         .modal-title {
             font-size: 2.5rem;
             font-weight: 800;
@@ -424,30 +407,37 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
+        /* Reduce font size on small screens */
+        @media(max-width:768px){
+            .modal-title {
+                font-size: 2rem;
+            }
+            .modal-rating {
+                font-size: 1.2rem;
+            }
+            .modal-description {
+                font-size: 1rem;
+            }
+        }
         .modal-rating {
             font-size: 1.5rem;
             color: #ffd700;
             margin-bottom: 1rem;
         }
-
         .modal-description {
             font-size: 1.1rem;
             line-height: 1.6;
             color: var(--text-secondary);
             margin-bottom: 2rem;
         }
-
         .server-selector {
             margin-bottom: 2rem;
         }
-
         .server-selector label {
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 600;
         }
-
         .server-selector select {
             width: 100%;
             padding: 0.8rem;
@@ -460,15 +450,14 @@
             font-size: 1rem;
             min-height: 48px;
         }
-
         .modal-video {
             width: 100%;
             height: 400px;
             border-radius: 15px;
             border: none;
         }
-
-                .close {
+        /* Close button */
+        .close {
             position: absolute;
             top: 1rem;
             right: 1.5rem;
@@ -483,12 +472,10 @@
             align-items: center;
             justify-content: center;
         }
-
         .close:hover {
             transform: scale(1.2);
             color: #ff5252;
         }
-
         /* Search modal styles */
         .search-modal {
             position: fixed;
@@ -504,13 +491,11 @@
             padding: 2rem 1rem;
             z-index: 1500;
         }
-
         .search-modal-content {
             width: 100%;
             max-width: 800px;
             margin-top: 2rem;
         }
-
         .search-modal input {
             width: 100%;
             padding: 1rem 1.5rem;
@@ -524,7 +509,6 @@
             font-family: inherit;
             min-height: 48px;
         }
-
         .search-results {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -532,9 +516,7 @@
             padding: 1rem 0;
             max-height: 60vh;
             overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
         }
-
         .search-results img {
             width: 100%;
             height: 225px;
@@ -544,12 +526,10 @@
             transition: all 0.3s ease;
             touch-action: manipulation;
         }
-
         .search-results img:hover {
             transform: scale(1.05);
             box-shadow: 0 10px 25px rgba(255, 0, 127, 0.4);
         }
-
         /* Footer styles */
         .footer {
             background: var(--glass-bg);
@@ -557,23 +537,20 @@
             border-top: 1px solid var(--glass-border);
             padding: 3rem 2rem 2rem;
             margin-top: 5rem;
+            text-align: center;
         }
-
         .footer-content {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 1.5rem;
-            text-align: center;
         }
-
         .footer-links {
             display: flex;
             gap: 2rem;
             flex-wrap: wrap;
             justify-content: center;
         }
-
         .footer-links a {
             color: var(--text-secondary);
             text-decoration: none;
@@ -584,13 +561,12 @@
             min-height: 44px;
             display: flex;
             align-items: center;
+            font-size: 0.9rem;
         }
-
         .footer-links a:hover {
             color: var(--accent-color);
             background: rgba(255, 255, 255, 0.1);
         }
-
         /* Loading spinner */
         .loading {
             display: flex;
@@ -598,7 +574,6 @@
             align-items: center;
             padding: 2rem;
         }
-
         .spinner {
             width: 40px;
             height: 40px;
@@ -607,215 +582,119 @@
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
-
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
-        /* Mobile Responsive adjustments */
+        /* Responsive adjustments for tablets and small screens */
         @media (max-width: 768px) {
-            .warning-overlay {
-                font-size: 1.5rem;
-                padding: 1rem;
+            /* Navbar adjustments */
+            body {
+                font-size: 14px;
             }
-
             .navbar {
                 padding: 1rem;
-                position: relative;
             }
-
+            /* Show toggle button */
             .mobile-menu-toggle {
-                display: block;
+                display: flex;
             }
-
-            .nav-links {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: rgba(12, 12, 12, 0.95);
-                backdrop-filter: blur(20px);
-                border-top: 1px solid var(--glass-border);
-                flex-direction: column;
-                gap: 0;
-                padding: 1rem;
-                transform: translateY(-100%);
-                opacity: 0;
-                visibility: hidden;
-                transition: all 0.3s ease;
-                z-index: 1000;
-            }
-
-            .nav-links.active {
-                transform: translateY(0);
-                opacity: 1;
-                visibility: visible;
-            }
-
-            .nav-links a {
-                width: 100%;
-                padding: 1rem;
-                text-align: center;
-                border-bottom: 1px solid var(--glass-border);
-            }
-
-            .nav-links a:last-child {
-                border-bottom: none;
-            }
-
+            /* Search bar takes full width */
             .search-bar {
                 width: 100%;
                 margin-top: 1rem;
             }
-
+            /* Banner height reduction for mobile */
             .banner {
                 height: 50vh;
-                padding: 0 1rem;
+                padding: 1rem;
             }
-
             .banner h1 {
                 font-size: 2.5rem;
             }
-
             .banner-description {
                 font-size: 1rem;
             }
-
             .banner-buttons {
                 gap: 0.5rem;
             }
-
+            /* Buttons for mobile */
             .btn {
                 padding: 0.7rem 1.5rem;
                 font-size: 0.9rem;
                 flex: 1;
-                justify-content: center;
             }
-
+            /* Modal adjustments */
             .modal {
-                padding: 0.5rem;
-                align-items: flex-start;
-                padding-top: 2rem;
+                padding: 1rem;
             }
-
             .modal-content {
                 padding: 1.5rem;
-                width: 100%;
                 max-height: 95vh;
             }
-
             .modal-header {
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
                 gap: 1rem;
             }
-
             .modal-poster {
                 width: 150px;
+                height: auto;
             }
-
             .modal-title {
                 font-size: 1.8rem;
             }
-
             .modal-rating {
                 font-size: 1.2rem;
             }
-
             .modal-description {
                 font-size: 1rem;
             }
-
             .modal-video {
                 height: 250px;
             }
-
-            .search-modal {
-                padding: 1rem;
-            }
-
-            .search-modal-content {
-                margin-top: 1rem;
-            }
-
-            .search-modal input {
-                font-size: 1rem;
-                padding: 0.8rem 1rem;
-            }
-
-            .search-results {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-                gap: 1rem;
-                max-height: 50vh;
-            }
-
-            .search-results img {
-                height: 180px;
-            }
-
-            .content-card {
-                /* Adjusted for vertical layout */
-                height: 350px; /* Fixed height for cards */
-            }
-
-            .content-card img {
-                height: 100%; /* Fill the card height */
-            }
-
+            /* Content section for mobile */
             .section {
                 margin: 2rem 1rem;
             }
-
             .section h2 {
                 font-size: 1.5rem;
             }
-
+            /* Content cards */
+            .content-card {
+                height: auto;
+            }
+            /* For mobile, images can be smaller or auto */
+            .content-card img {
+                height: auto;
+            }
+            /* Footer adjustments */
             .footer {
                 padding: 2rem 1rem;
             }
-
             .footer-links {
                 gap: 1rem;
             }
-
-            .footer-links a {
-                font-size: 0.9rem;
-            }
         }
-
         /* Very small screens */
         @media (max-width: 480px) {
             .warning-overlay {
                 font-size: 1.2rem;
             }
         }
-
+        /* Extra small screens for very tiny devices */
         @media (max-width: 320px) {
             .banner h1 {
                 font-size: 1.8rem;
             }
-
-            .modal-content {
-                padding: 1rem;
-            }
-
-            .modal-poster {
-                width: 120px;
-            }
-
-            .content-card {
-                height: 250px; /* Adjusted for smaller screens */
-            }
-
-            .content-card img {
-                height: 100%; /* Fill the card height */
+            /* Adjust modal title font size */
+            .modal-title {
+                font-size: 1.5rem;
             }
         }
     </style>
 </head>
-
 <body>
     <div class="warning-overlay" id="warning-overlay">
         <div>
@@ -824,10 +703,9 @@
             <small style="font-size: 1rem;">Please close developer tools to continue</small>
         </div>
     </div>
-
     <nav class="navbar">
         <a href="#" class="logo">Baymax PH</a>
-        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle mobile menu">
             <i class="fas fa-bars"></i>
         </button>
         <div class="nav-links" id="nav-links">
@@ -835,7 +713,6 @@
             <input type="text" class="search-bar" placeholder="Search Vivamax movies..." onfocus="openSearchModal()" />
         </div>
     </nav>
-
     <div class="banner" id="banner">
         <div class="banner-content">
             <h1 id="banner-title">Loading Vivamax...</h1>
@@ -850,7 +727,6 @@
             </div>
         </div>
     </div>
-
     <div class="section" id="movies-section">
         <h2><i class="fas fa-film"></i> Vivamax Movies</h2>
         <div class="content-row" id="movies-list"></div>
@@ -859,7 +735,6 @@
         </div>
         <button class="btn btn-secondary" id="load-more-btn" style="display: block; margin: 2rem auto;" onclick="loadMoreMovies()">Load More</button>
     </div>
-
     <div class="modal" id="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
@@ -875,16 +750,15 @@
                 <label for="server"><i class="fas fa-server"></i> Select Server:</label>
                 <select id="server" onchange="changeServer()">
                     <option value="111movies.com">Server 1</option>
-                    <option value="vidsrc.me">Server 2</option>
+                    <option value="moviesapi.to">Server 2</option>
                     <option value="player.videasy.net">Server 3</option>
                     <option value="vidsrc.cc">Server 4</option>
-                    <option value="moviesapi.to">Server 5</option>
+                    <option value="vidsrc.me">Server 5</option>
                 </select>
             </div>
             <iframe id="modal-video" class="modal-video" allowfullscreen></iframe>
         </div>
     </div>
-
     <div class="search-modal" id="search-modal">
         <div class="search-modal-content">
             <span class="close" onclick="closeSearchModal()">&times;</span>
@@ -892,7 +766,6 @@
             <div class="search-results" id="search-results"></div>
         </div>
     </div>
-
     <footer class="footer">
         <div class="footer-content">
             <p>&copy; 2025 Vivamax PH. All rights reserved.</p>
@@ -904,9 +777,507 @@
             </div>
         </div>
     </footer>
-
     <script>
-        const _0x27c66b=_0x3bce;(function(_0x54630c,_0x44064e){const _0x475fba=_0x3bce,_0x210bd9=_0x54630c();while(!![]){try{const _0x551ab7=-parseInt(_0x475fba(0xbb))/0x1*(-parseInt(_0x475fba(0xe9))/0x2)+-parseInt(_0x475fba(0x89))/0x3*(parseInt(_0x475fba(0xd0))/0x4)+parseInt(_0x475fba(0xe4))/0x5+-parseInt(_0x475fba(0xa4))/0x6*(-parseInt(_0x475fba(0xb1))/0x7)+parseInt(_0x475fba(0xc5))/0x8*(parseInt(_0x475fba(0x134))/0x9)+parseInt(_0x475fba(0xd3))/0xa*(-parseInt(_0x475fba(0xf4))/0xb)+parseInt(_0x475fba(0xa0))/0xc*(-parseInt(_0x475fba(0xfd))/0xd);if(_0x551ab7===_0x44064e)break;else _0x210bd9['push'](_0x210bd9['shift']());}catch(_0x2db009){_0x210bd9['push'](_0x210bd9['shift']());}}}(_0x2685,0xf0b08),(function(){'use strict';const _0x1aecf8=_0x3bce;function _0x4bb0ae(){const _0x137c40=_0x3bce;return/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i['test'](navigator[_0x137c40(0xe8)])||'ontouchstart'in window||navigator[_0x137c40(0x97)]>0x0;}document[_0x1aecf8(0x112)]('contextmenu',function(_0x17fac0){const _0x2482fa=_0x1aecf8;if(!_0x4bb0ae())return _0x17fac0[_0x2482fa(0xa2)](),![];}),document[_0x1aecf8(0x112)](_0x1aecf8(0xd1),function(_0x18630a){const _0x387b51=_0x1aecf8;if(!_0x4bb0ae()){if(_0x18630a[_0x387b51(0xf3)]===0x7b||_0x18630a[_0x387b51(0x7c)]&&_0x18630a[_0x387b51(0x82)]&&(_0x18630a[_0x387b51(0xf3)]===0x49||_0x18630a[_0x387b51(0xf3)]===0x4a)||_0x18630a['ctrlKey']&&_0x18630a[_0x387b51(0xf3)]===0x55||_0x18630a[_0x387b51(0x7c)]&&_0x18630a[_0x387b51(0x82)]&&_0x18630a[_0x387b51(0xf3)]===0x43)return _0x18630a[_0x387b51(0xa2)](),_0x3196af(),![];}});let _0x156e52={'open':![],'orientation':null};const _0xbcce18=0xa0;!_0x4bb0ae()&&setInterval(function(){const _0x5b8493=_0x1aecf8;window[_0x5b8493(0xfa)]-window[_0x5b8493(0x124)]>_0xbcce18||window[_0x5b8493(0x111)]-window[_0x5b8493(0x143)]>_0xbcce18?!_0x156e52[_0x5b8493(0xf7)]&&(_0x156e52[_0x5b8493(0xf7)]=!![],_0x3196af()):_0x156e52[_0x5b8493(0xf7)]&&(_0x156e52['open']=![],_0x32fb18());},0x1f4);console[_0x1aecf8(0x80)](_0x1aecf8(0x151),'color:\x20red;\x20font-size:\x2050px;\x20font-weight:\x20bold;'),console[_0x1aecf8(0x80)](_0x1aecf8(0x133),_0x1aecf8(0xcc));if(!_0x4bb0ae()){let _0x21bc06=()=>{let _0x408249=new Date();debugger;let _0x502a6c=new Date();_0x502a6c-_0x408249>0x64&&_0x3196af();};setInterval(()=>{const _0x4f64c3=_0x1aecf8;console[_0x4f64c3(0x104)](),_0x21bc06();},0x7d0),setInterval(function(){const _0x22b6d4=_0x1aecf8,_0x5f386c=performance[_0x22b6d4(0x132)]();debugger;const _0x439ba3=performance[_0x22b6d4(0x132)]();_0x439ba3-_0x5f386c>0x64&&_0x3196af();},0x3e8);}document[_0x1aecf8(0x112)](_0x1aecf8(0xa8),function(_0x132650){const _0x250d7d=_0x1aecf8;if(_0x132650[_0x250d7d(0x137)]['tagName']==='SCRIPT'||_0x132650[_0x250d7d(0x137)]['tagName']===_0x250d7d(0xb2))return _0x132650[_0x250d7d(0xa2)](),![];}),document[_0x1aecf8(0x112)](_0x1aecf8(0x13c),function(_0x39a0b7){const _0x19a75a=_0x1aecf8;return _0x39a0b7[_0x19a75a(0xa2)](),![];});function _0x3196af(){const _0x2d4cb6=_0x1aecf8,_0xb241ec=document['getElementById'](_0x2d4cb6(0x126));_0xb241ec&&(_0xb241ec[_0x2d4cb6(0x12c)][_0x2d4cb6(0xfb)]=_0x2d4cb6(0x86),document[_0x2d4cb6(0xd5)][_0x2d4cb6(0x12c)][_0x2d4cb6(0x10d)]='blur(10px)');}function _0x32fb18(){const _0x3d2524=_0x1aecf8,_0x4c70e4=document[_0x3d2524(0x85)]('warning-overlay');_0x4c70e4&&(_0x4c70e4[_0x3d2524(0x12c)][_0x3d2524(0xfb)]=_0x3d2524(0xf0),document[_0x3d2524(0xd5)][_0x3d2524(0x12c)][_0x3d2524(0x10d)]=_0x3d2524(0xf0));}window[atob(_0x1aecf8(0x83))]=_0x3196af,window[atob(_0x1aecf8(0x14b))]=_0x32fb18;}()));function toggleMobileMenu(){const _0x30c989=_0x3bce,_0x2f040c=document[_0x30c989(0x85)](_0x30c989(0xcd)),_0x15e786=document['querySelector']('.mobile-menu-toggle\x20i');_0x2f040c&&_0x15e786&&(_0x2f040c['classList'][_0x30c989(0xdd)](_0x30c989(0x107)),_0x2f040c[_0x30c989(0x13d)][_0x30c989(0xb6)]('active')?(_0x15e786[_0x30c989(0x13d)][_0x30c989(0xe3)](_0x30c989(0xad)),_0x15e786[_0x30c989(0x13d)][_0x30c989(0x110)](_0x30c989(0xc2))):(_0x15e786[_0x30c989(0x13d)][_0x30c989(0xe3)](_0x30c989(0xc2)),_0x15e786[_0x30c989(0x13d)][_0x30c989(0x110)](_0x30c989(0xad))));}function closeMobileMenu(){const _0x10e2b5=_0x3bce,_0x170e35=document[_0x10e2b5(0x85)]('nav-links'),_0x5889ac=document['querySelector'](_0x10e2b5(0x147));_0x170e35&&_0x5889ac&&(_0x170e35[_0x10e2b5(0x13d)][_0x10e2b5(0xe3)](_0x10e2b5(0x107)),_0x5889ac['classList'][_0x10e2b5(0xe3)](_0x10e2b5(0xc2)),_0x5889ac[_0x10e2b5(0x13d)]['add'](_0x10e2b5(0xad)));}document[_0x27c66b(0x112)]('click',function(_0x1a7f7e){const _0x18666a=_0x27c66b,_0x225af8=document[_0x18666a(0x10c)]('.navbar'),_0x17d62e=document[_0x18666a(0x85)](_0x18666a(0xcd));_0x225af8&&_0x17d62e&&!_0x225af8[_0x18666a(0xb6)](_0x1a7f7e[_0x18666a(0x137)])&&_0x17d62e['classList'][_0x18666a(0xb6)](_0x18666a(0x107))&&closeMobileMenu();});const API_KEY=atob(_0x27c66b(0x98)),BASE_URL=atob(_0x27c66b(0xb4)),IMG_URL=atob(_0x27c66b(0xc0)),VIVAMAX_COMPANY_ID=0x24696;let currentItem,bannerItem,vivamaxMovies=[],currentPage=0x1,totalPages=0x1,isLoading=![];function showLoadingState(_0x125327){const _0x1acf26=_0x27c66b,_0x1a9765=document['getElementById'](_0x125327);_0x1a9765?_0x1a9765['innerHTML']=_0x1acf26(0x88):console['warn'](_0x1acf26(0xfe)+_0x125327+'\x27\x20not\x20found');}function setLoadingState(_0x43f0b5){const _0x382026=_0x27c66b;isLoading=_0x43f0b5;const _0x8464b=document[_0x382026(0xe2)](_0x382026(0xe5));_0x8464b[_0x382026(0x94)](_0x409866=>{const _0x21109b=_0x382026;_0x409866[_0x21109b(0x12c)][_0x21109b(0xfb)]=_0x43f0b5?'flex':_0x21109b(0xf0);});}async function fetchVivamaxMovies(_0x3681be=0x1){const _0xcc14b6=_0x27c66b;try{const _0x33ba83=await fetch(BASE_URL+_0xcc14b6(0xdc)+API_KEY+'&with_companies='+VIVAMAX_COMPANY_ID+_0xcc14b6(0x141)+_0x3681be),_0x3ef38c=await _0x33ba83[_0xcc14b6(0x12d)]();return totalPages=_0x3ef38c['total_pages'],_0x3ef38c[_0xcc14b6(0x91)];}catch(_0x5b1efe){return console[_0xcc14b6(0x12e)](_0xcc14b6(0xdb),_0x5b1efe),[];}}async function fetchVivamaxMoviesWithLoading(_0xaaf32=0x1){if(isLoading)return[];setLoadingState(!![]);try{const _0x411fb7=await fetchVivamaxMovies(_0xaaf32);return _0x411fb7;}finally{setLoadingState(![]);}}function displayBanner(_0x4e9a0b){const _0x38bd6f=_0x27c66b;bannerItem=_0x4e9a0b;const _0x51f25e=document[_0x38bd6f(0x85)](_0x38bd6f(0xfc)),_0x4b26c7=document[_0x38bd6f(0x85)](_0x38bd6f(0xa3)),_0x46efc0=document[_0x38bd6f(0x85)]('banner-description');if(_0x51f25e&&_0x4b26c7&&_0x46efc0){const _0x4d7997=_0x4e9a0b[_0x38bd6f(0xea)]||_0x4e9a0b[_0x38bd6f(0x9e)];_0x4d7997?_0x51f25e[_0x38bd6f(0x12c)][_0x38bd6f(0x99)]=_0x38bd6f(0xab)+IMG_URL+_0x4d7997+')':_0x51f25e[_0x38bd6f(0x12c)][_0x38bd6f(0x99)]=_0x38bd6f(0xf0),_0x4b26c7[_0x38bd6f(0xc1)]=_0x4e9a0b['title']||_0x4e9a0b[_0x38bd6f(0x150)]||_0x38bd6f(0xe6),_0x46efc0[_0x38bd6f(0xc1)]=_0x4e9a0b[_0x38bd6f(0xff)]||_0x38bd6f(0x131);}}function showBannerDetails(){bannerItem&&showDetails(bannerItem);}function displayList(_0xe3ea47,_0x1b01b1,_0x243442=![]){const _0x13bf55=_0x27c66b,_0xad0dc4=document[_0x13bf55(0x85)](_0x1b01b1);if(!_0xad0dc4){console['warn'](_0x13bf55(0xfe)+_0x1b01b1+_0x13bf55(0xb8));return;}!_0x243442&&(_0xad0dc4['innerHTML']='');if(_0xe3ea47[_0x13bf55(0x109)]===0x0&&!_0x243442){_0xad0dc4['innerHTML']='<div\x20class=\x22loading\x22><div\x20class=\x22spinner\x22></div></div>';return;}_0xe3ea47[_0x13bf55(0x94)](_0x2e8610=>{const _0x160bf5=_0x13bf55,_0x2d5fc5=document[_0x160bf5(0x152)]('div');_0x2d5fc5[_0x160bf5(0x144)]=_0x160bf5(0x12a);const _0x2c2dd2=document[_0x160bf5(0x152)](_0x160bf5(0xee));_0x2c2dd2[_0x160bf5(0x7b)]=''+IMG_URL+_0x2e8610[_0x160bf5(0x9e)],_0x2c2dd2[_0x160bf5(0x101)]=_0x2e8610[_0x160bf5(0x11c)]||_0x2e8610[_0x160bf5(0x150)]||_0x160bf5(0x139),_0x2c2dd2[_0x160bf5(0x95)]=function(){const _0x43ce74=_0x160bf5;this[_0x43ce74(0x7b)]=_0x43ce74(0x153);},_0x2d5fc5[_0x160bf5(0x87)](_0x2c2dd2),_0x2d5fc5[_0x160bf5(0x123)]=()=>showDetails(_0x2e8610),_0x2d5fc5[_0x160bf5(0x112)]('touchstart',function(){const _0x3e71b1=_0x160bf5;this[_0x3e71b1(0x12c)][_0x3e71b1(0x146)]='scale(0.95)';}),_0x2d5fc5[_0x160bf5(0x112)](_0x160bf5(0x11f),function(){const _0x1267e1=_0x160bf5;this[_0x1267e1(0x12c)][_0x1267e1(0x146)]='';}),_0xad0dc4[_0x160bf5(0x87)](_0x2d5fc5);});}function displayListWithFocusable(_0x335b4e,_0x462445,_0x41692d=![]){displayList(_0x335b4e,_0x462445,_0x41692d),setTimeout(makeContentCardsFocusable,0x64);}function showDetails(_0x11b3ae){const _0x349bc7=_0x27c66b;currentItem=_0x11b3ae;const _0x58644f=document[_0x349bc7(0x85)](_0x349bc7(0x145)),_0x4ee138=document['getElementById'](_0x349bc7(0xef)),_0x3a9491=document[_0x349bc7(0x85)](_0x349bc7(0x10b)),_0x4b097a=document['getElementById'](_0x349bc7(0x11a)),_0x2d98b1=document[_0x349bc7(0x85)]('modal');if(_0x58644f)_0x58644f['textContent']=_0x11b3ae[_0x349bc7(0x11c)]||_0x11b3ae[_0x349bc7(0x150)]||_0x349bc7(0x14d);if(_0x4ee138)_0x4ee138['textContent']=_0x11b3ae[_0x349bc7(0xff)]||_0x349bc7(0xd2);const _0x304de5=_0x11b3ae[_0x349bc7(0x9e)];_0x3a9491&&(_0x3a9491[_0x349bc7(0x7b)]=_0x304de5?''+IMG_URL+_0x304de5:_0x349bc7(0x12f));const _0x4d0be5=Math[_0x349bc7(0xd7)]((_0x11b3ae[_0x349bc7(0x122)]||0x0)/0x2);_0x4b097a&&(_0x4b097a[_0x349bc7(0xf5)]='★'[_0x349bc7(0xbe)](_0x4d0be5)+'☆'['repeat'](0x5-_0x4d0be5)+('\x20('+(_0x11b3ae[_0x349bc7(0x122)]||0x0)[_0x349bc7(0x9f)](0x1)+_0x349bc7(0x108))),changeServer(),_0x2d98b1&&(_0x2d98b1[_0x349bc7(0x12c)]['display']='flex',document['body'][_0x349bc7(0x12c)][_0x349bc7(0x13a)]=_0x349bc7(0xb7),setTimeout(()=>{trapFocus(_0x2d98b1);},0x64));}function changeServer(){const _0x16d6a1=_0x27c66b,_0x5b2914=document[_0x16d6a1(0x85)]('server'),_0x4e45c9=document['getElementById'](_0x16d6a1(0xf9));if(!_0x5b2914||!_0x4e45c9||!currentItem)return;const _0xc754a0=_0x5b2914[_0x16d6a1(0x14e)],_0xe3d69c=_0x16d6a1(0x8f);let _0x340de9='';if(_0xc754a0===_0x16d6a1(0xaf))_0x340de9=atob(_0x16d6a1(0xe7))+'/'+_0xe3d69c+'/'+currentItem['id'];else{if(_0xc754a0===_0x16d6a1(0xde))_0x340de9=atob(_0x16d6a1(0x9b))+'/'+_0xe3d69c+_0x16d6a1(0xa9)+currentItem['id'];else{if(_0xc754a0===_0x16d6a1(0x8d))_0x340de9=atob(_0x16d6a1(0xf1))+'/'+_0xe3d69c+'/'+currentItem['id'];else{if(_0xc754a0===_0x16d6a1(0x8a))_0x340de9=atob(_0x16d6a1(0xf1))+'/'+_0xe3d69c+'/'+currentItem['id'];else _0xc754a0===_0x16d6a1(0xf6)&&(_0x340de9=atob(_0x16d6a1(0xf1))+'/'+_0xe3d69c+'/'+currentItem['id']);}}}_0x4e45c9[_0x16d6a1(0x7b)]=_0x340de9;}function closeModal(){const _0x442260=_0x27c66b,_0x263fce=document[_0x442260(0x85)](_0x442260(0x117)),_0x12e328=document[_0x442260(0x85)](_0x442260(0xf9));_0x263fce&&(_0x263fce[_0x442260(0x12c)][_0x442260(0xfb)]='none',document['body'][_0x442260(0x12c)][_0x442260(0x13a)]=''),_0x12e328&&(_0x12e328['src']='');}function openSearchModal(){const _0x5a770e=_0x27c66b,_0x2aa4ff=document['getElementById'](_0x5a770e(0x14f)),_0x2c21a7=document['getElementById'](_0x5a770e(0x13e));_0x2aa4ff&&(_0x2aa4ff[_0x5a770e(0x12c)][_0x5a770e(0xfb)]=_0x5a770e(0x86),document['body'][_0x5a770e(0x12c)][_0x5a770e(0x13a)]=_0x5a770e(0xb7),setTimeout(()=>{const _0x5300cd=_0x5a770e;_0x2c21a7&&(_0x2c21a7[_0x5300cd(0x9c)](),trapFocus(_0x2aa4ff));},0x64)),closeMobileMenu();}function _0x3bce(_0x522382,_0x933a12){const _0x26852f=_0x2685();return _0x3bce=function(_0x3bce2c,_0x529fd5){_0x3bce2c=_0x3bce2c-0x7a;let _0x22d6a8=_0x26852f[_0x3bce2c];return _0x22d6a8;},_0x3bce(_0x522382,_0x933a12);}function closeSearchModal(){const _0x536370=_0x27c66b,_0x5a5ddd=document[_0x536370(0x85)]('search-modal'),_0x3bf2c8=document['getElementById'](_0x536370(0x84)),_0x2cc723=document[_0x536370(0x85)](_0x536370(0x13e));_0x5a5ddd&&(_0x5a5ddd[_0x536370(0x12c)][_0x536370(0xfb)]=_0x536370(0xf0),document['body']['style'][_0x536370(0x13a)]=''),_0x3bf2c8&&(_0x3bf2c8[_0x536370(0xf5)]=''),_0x2cc723&&(_0x2cc723[_0x536370(0x14e)]='');}let searchTimeout;async function searchVivamaxMoviesOnly(){const _0x2acfc1=_0x27c66b,_0x4256bc=document[_0x2acfc1(0x85)](_0x2acfc1(0x13e)),_0x127e18=document[_0x2acfc1(0x85)](_0x2acfc1(0x84));if(!_0x4256bc||!_0x127e18)return;const _0x5b4f46=_0x4256bc[_0x2acfc1(0x14e)];searchTimeout&&clearTimeout(searchTimeout);if(!_0x5b4f46[_0x2acfc1(0x8c)]()){_0x127e18['innerHTML']='';return;}searchTimeout=setTimeout(async()=>{const _0xb58adc=_0x2acfc1;try{_0x127e18['innerHTML']=_0xb58adc(0x88);const _0x48d2fa=await fetch(BASE_URL+_0xb58adc(0x11d)+API_KEY+_0xb58adc(0x106)+encodeURIComponent(_0x5b4f46)+_0xb58adc(0x9a)+VIVAMAX_COMPANY_ID),_0x32140a=await _0x48d2fa[_0xb58adc(0x12d)]();_0x127e18[_0xb58adc(0xf5)]='';const _0x10f9a4=_0x32140a[_0xb58adc(0x91)][_0xb58adc(0x10d)](_0x1634cb=>_0x1634cb[_0xb58adc(0x9e)]);if(_0x10f9a4[_0xb58adc(0x109)]===0x0){_0x127e18['innerHTML']=_0xb58adc(0xeb);return;}_0x10f9a4['forEach'](_0x4a9270=>{const _0x27f7c3=_0xb58adc,_0x17e5c2=document['createElement'](_0x27f7c3(0xee));_0x17e5c2[_0x27f7c3(0x7b)]=''+IMG_URL+_0x4a9270[_0x27f7c3(0x9e)],_0x17e5c2['alt']=_0x4a9270[_0x27f7c3(0x11c)]||_0x4a9270[_0x27f7c3(0x150)]||_0x27f7c3(0xca),_0x17e5c2[_0x27f7c3(0x95)]=function(){const _0x4a8d31=_0x27f7c3;this[_0x4a8d31(0x7b)]='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4PHJlY3Qgd2lkdGg9IjEwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMzMzIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9ImNlbnRyYWwiPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg==';},_0x17e5c2[_0x27f7c3(0x123)]=()=>{closeSearchModal(),showDetails(_0x4a9270);},_0x17e5c2[_0x27f7c3(0x112)]('touchstart',function(){const _0x1d2c71=_0x27f7c3;this[_0x1d2c71(0x12c)][_0x1d2c71(0x146)]=_0x1d2c71(0x114);}),_0x17e5c2['addEventListener'](_0x27f7c3(0x11f),function(){const _0x3e0899=_0x27f7c3;this[_0x3e0899(0x12c)]['transform']='';}),_0x127e18[_0x27f7c3(0x87)](_0x17e5c2);});}catch(_0x1d06bf){console['error'](_0xb58adc(0xac),_0x1d06bf),_0x127e18[_0xb58adc(0xf5)]=_0xb58adc(0xbf);}},0x12c);}async function showVivamaxContent(){const _0x4734d3=_0x27c66b,_0x370b1d=document[_0x4734d3(0x85)]('movies-section');_0x370b1d&&(_0x370b1d[_0x4734d3(0x12c)][_0x4734d3(0xfb)]=_0x4734d3(0x119));if(vivamaxMovies['length']===0x0){showLoadingState('movies-list'),vivamaxMovies=await fetchVivamaxMoviesWithLoading();if(vivamaxMovies[_0x4734d3(0x109)]===0x0){const _0x222d6d=document[_0x4734d3(0x85)](_0x4734d3(0x100));_0x222d6d&&(_0x222d6d[_0x4734d3(0xf5)]=_0x4734d3(0x113));return;}}displayListWithFocusable(vivamaxMovies,_0x4734d3(0x100)),updateLoadMoreButtonVisibility();}async function loadMoreMovies(){const _0x1d0ebd=_0x27c66b;if(currentPage<totalPages&&!isLoading){currentPage++;const _0x35ef99=document['getElementById'](_0x1d0ebd(0x13f)),_0x10403b=document[_0x1d0ebd(0x85)](_0x1d0ebd(0xb9));if(_0x35ef99)_0x35ef99['style'][_0x1d0ebd(0xfb)]=_0x1d0ebd(0x86);if(_0x10403b)_0x10403b[_0x1d0ebd(0x12c)][_0x1d0ebd(0xfb)]=_0x1d0ebd(0xf0);try{const _0x107b53=await fetchVivamaxMoviesWithLoading(currentPage);_0x107b53[_0x1d0ebd(0x109)]>0x0?(displayListWithFocusable(_0x107b53,_0x1d0ebd(0x100),!![]),vivamaxMovies=vivamaxMovies['concat'](_0x107b53)):console[_0x1d0ebd(0x80)](_0x1d0ebd(0xf2));}catch(_0x54e37d){console[_0x1d0ebd(0x12e)](_0x1d0ebd(0x92),_0x54e37d);}finally{if(_0x35ef99)_0x35ef99['style'][_0x1d0ebd(0xfb)]=_0x1d0ebd(0xf0);updateLoadMoreButtonVisibility(),makeContentCardsFocusable();}}else console[_0x1d0ebd(0x80)]('Already\x20loading\x20or\x20no\x20more\x20pages.');}function _0x2685(){const _0x2a931e=['toFixed','57048rdesbm','level','preventDefault','banner-title','1374324CcpJzi','Enter','offline','Tab','selectstart','/?tmdb=','Escape','url(','Error\x20searching\x20Vivamax\x20movies:','fa-bars','setAttribute','vidsrc.cc','scrollY','49Jebevu','STYLE','metaKey','aHR0cHM6Ly9hcGkudGhlbW92aWVkYi5vcmcvMw==','.content-row','contains','hidden','\x27\x20not\x20found','load-more-btn','App\x20paused','3sUOouP','button','then','repeat','<p\x20style=\x22text-align:\x20center;\x20color:\x20var(--accent-color);\x20padding:\x202rem;\x22>Error\x20searching.\x20Please\x20try\x20again.</p>','aHR0cHM6Ly9pbWFnZS50bWRiLm9yZy90L3Avb3JpZ2luYWw=','textContent','fa-times','Error\x20initializing\x20app:','key','2875464ZxPSlR','aria-modal','.btn','touchmove','offsetWidth','Search\x20result','.modal,\x20.search-modal','color:\x20red;\x20font-size:\x2016px;','nav-links','vibrate','pageY','2028544BgRohd','keydown','No\x20description\x20available.','440CbhIqA','Unable\x20to\x20load\x20content.\x20Please\x20check\x20your\x20connection\x20and\x20try\x20again.','body','reload','round','tabindex','Toggle\x20mobile\x20menu','translateY(','Error\x20fetching\x20Vivamax\x20movies:','/discover/movie?api_key=','toggle','vidsrc.me','🟢\x20Online','Loading\x20Vivamax...','Low\x20battery\x20detected\x20-\x20optimizing\x20for\x20power\x20saving','querySelectorAll','remove','8171955LoIQSt','.loading','Vivamax\x20Content','aHR0cHM6Ly92aWRzcmMuY2MvdjIvZW1iZWQ=','userAgent','971228tvyETs','backdrop_path','<p\x20style=\x22text-align:\x20center;\x20color:\x20var(--text-secondary);\x20padding:\x202rem;\x22>No\x20Vivamax\x20movies\x20found\x20for\x20your\x20search.</p>','reason','<p\x20style=\x22text-align:\x20center;\x20color:\x20var(--accent-color);\x20padding:\x202rem;\x22>Unable\x20to\x20load\x20content.\x20Please\x20refresh\x20the\x20page.</p>','img','modal-description','none','aHR0cHM6Ly9wbGF5ZXIudmlkZWFzeS5uZXQ=','No\x20more\x20movies\x20to\x20load.','keyCode','240790Cvsnqv','innerHTML','moviesapi.to','open','floor','modal-video','outerHeight','display','banner','7683qZAxyr','Container\x20with\x20id\x20\x27','overview','movies-list','alt','beforeunload','from','clear','touchstart','&query=','active','/10)','length','content','modal-image','querySelector','filter','heavy','charging','add','outerWidth','addEventListener','<p\x20style=\x22text-align:\x20center;\x20color:\x20var(--text-secondary);\x20padding:\x202rem;\x22>No\x20Vivamax\x20movies\x20available</p>','scale(0.95)','connection','dialog','modal','effectiveType','block','modal-rating','role','title','/search/movie?api_key=','Slow\x20connection\x20detected\x20-\x20optimizing\x20experience','touchend','App\x20resumed','Close\x20modal','vote_average','onclick','innerHeight','slow-2g','warning-overlay','ArrowRight','light','Vivamax\x20PH\x20app\x20fully\x20loaded\x20and\x20initialized\x20with\x20vertical\x20layout','content-card','setProperty','style','json','error','data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjMwMCIgeG1zbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4PHJlY3Qgd2lkdGg9IjEwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMzMzIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9ImNlbnRyYWwiPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg==','chargingchange','Discover\x20amazing\x20content\x20on\x20Vivamax\x20PH','now','%cThis\x20is\x20a\x20browser\x20feature\x20intended\x20for\x20developers.\x20Unauthorized\x20access\x20to\x20this\x20console\x20may\x20violate\x20the\x20terms\x20of\x20service.','27lrMfOO','random','touches','target','getBattery','Content\x20poster','overflow','ArrowLeft','dragstart','classList','search-input','load-more-spinner','button,\x20[href],\x20input,\x20select,\x20textarea,\x20[tabindex]:not([tabindex=\x22-1\x22])','&sort_by=popularity.desc&page=','div','innerWidth','className','modal-title','transform','.mobile-menu-toggle\x20i','click','--animation-duration','px)','aGlkZVdhcm5pbmc=','onLine','Untitled','value','search-modal','name','%cSTOP!','createElement','data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4PHJlY3Qgd2lkdGg9IjEwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMzMzIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9ImNlbnRyYWwiPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg==','indexOf','Welcome\x20to\x20Vivamax\x20PH','src','ctrlKey','documentElement','levelchange','ArrowUp','log','cssText','shiftKey','c2hvd1dhcm5pbmc=','search-results','getElementById','flex','appendChild','<div\x20class=\x22loading\x22><div\x20class=\x22spinner\x22></div></div>','6WCTQkm','111movies.com','View\x20details\x20for\x20','trim','player.videasy.net','activeElement','movie','.close','results','Error\x20loading\x20more\x20movies:','visibilitychange','forEach','onerror','banner-description','maxTouchPoints','NDU2MDM5ZWVhNTk2OTFlY2Y4ZGIzMzkyYWZjZWFiZTA=','backgroundImage','&with_companies=','aHR0cHM6Ly92aWRzcmMubmV0L2VtYmVk','focus','aria-label','poster_path'];_0x2685=function(){return _0x2a931e;};return _0x2685();}function updateLoadMoreButtonVisibility(){const _0x5386bb=_0x27c66b,_0x59644d=document[_0x5386bb(0x85)](_0x5386bb(0xb9));_0x59644d&&(currentPage<totalPages?_0x59644d[_0x5386bb(0x12c)][_0x5386bb(0xfb)]='block':_0x59644d[_0x5386bb(0x12c)]['display']=_0x5386bb(0xf0));}const modal=document[_0x27c66b(0x85)](_0x27c66b(0x117));modal&&modal[_0x27c66b(0x112)](_0x27c66b(0x148),function(_0x34fe2c){const _0x95d15e=_0x27c66b;_0x34fe2c[_0x95d15e(0x137)]===this&&closeModal();});const searchModal=document[_0x27c66b(0x85)](_0x27c66b(0x14f));searchModal&&searchModal[_0x27c66b(0x112)](_0x27c66b(0x148),function(_0x1c9e70){const _0xebc4ef=_0x27c66b;_0x1c9e70[_0xebc4ef(0x137)]===this&&closeSearchModal();});document[_0x27c66b(0x112)](_0x27c66b(0xd1),function(_0x538598){const _0x2e6134=_0x27c66b;_0x538598['key']===_0x2e6134(0xaa)&&(closeModal(),closeSearchModal(),closeMobileMenu()),_0x538598[_0x2e6134(0xc4)]==='/'&&!_0x538598['ctrlKey']&&!_0x538598[_0x2e6134(0xb3)]&&(_0x538598[_0x2e6134(0xa2)](),openSearchModal());});let startY=0x0,pullDistance=0x0;const pullThreshold=0x64;document[_0x27c66b(0x112)](_0x27c66b(0x105),function(_0x593f3b){const _0x5d5966=_0x27c66b;window[_0x5d5966(0xb0)]===0x0&&(startY=_0x593f3b[_0x5d5966(0x136)][0x0][_0x5d5966(0xcf)]);},{'passive':!![]}),document[_0x27c66b(0x112)](_0x27c66b(0xc8),function(_0x279f4b){const _0x45ada9=_0x27c66b;startY&&window[_0x45ada9(0xb0)]===0x0&&(pullDistance=_0x279f4b[_0x45ada9(0x136)][0x0]['pageY']-startY,pullDistance>0x0&&(document[_0x45ada9(0xd5)][_0x45ada9(0x12c)][_0x45ada9(0x146)]=_0x45ada9(0xda)+Math['min'](pullDistance/0x3,0x32)+_0x45ada9(0x14a)));},{'passive':!![]}),document['addEventListener'](_0x27c66b(0x11f),function(_0xee87b9){const _0x4a7af4=_0x27c66b;pullDistance>pullThreshold&&location[_0x4a7af4(0xd6)](),document[_0x4a7af4(0xd5)][_0x4a7af4(0x12c)][_0x4a7af4(0x146)]='',startY=0x0,pullDistance=0x0;},{'passive':!![]});function addHapticFeedback(_0x47a49d,_0x5a527a=_0x27c66b(0x128)){const _0x136e39=_0x27c66b;if(!_0x47a49d)return;_0x47a49d[_0x136e39(0x112)](_0x136e39(0x148),function(){const _0x6a9c6d=_0x136e39;if('vibrate'in navigator)switch(_0x5a527a){case'light':navigator[_0x6a9c6d(0xce)](0xa);break;case'medium':navigator[_0x6a9c6d(0xce)](0x14);break;case _0x6a9c6d(0x10e):navigator[_0x6a9c6d(0xce)](0x32);break;}});}document[_0x27c66b(0x112)](_0x27c66b(0x93),function(){const _0x1c1a55=_0x27c66b;document[_0x1c1a55(0xb7)]?console[_0x1c1a55(0x80)](_0x1c1a55(0xba)):console[_0x1c1a55(0x80)](_0x1c1a55(0x120));}),window[_0x27c66b(0x112)](_0x27c66b(0x102),function(){searchTimeout&&clearTimeout(searchTimeout);}),window[_0x27c66b(0x112)]('error',function(_0x3e28ad){const _0x2cd745=_0x27c66b;console[_0x2cd745(0x12e)]('Unhandled\x20error:',_0x3e28ad[_0x2cd745(0x12e)]);}),window[_0x27c66b(0x112)]('unhandledrejection',function(_0x87e5f8){const _0x49d757=_0x27c66b;console['error']('Unhandled\x20promise\x20rejection:',_0x87e5f8[_0x49d757(0xec)]);});if(_0x27c66b(0x115)in navigator){const connection=navigator[_0x27c66b(0x115)];function updateForConnection(){const _0x33efb4=_0x27c66b;(connection[_0x33efb4(0x118)]===_0x33efb4(0x125)||connection[_0x33efb4(0x118)]==='2g')&&(document[_0x33efb4(0x7d)]['style']['setProperty']('--animation-duration','0s'),console[_0x33efb4(0x80)](_0x33efb4(0x11e)));}updateForConnection(),connection['addEventListener']('change',updateForConnection);}_0x27c66b(0x138)in navigator&&navigator[_0x27c66b(0x138)]()[_0x27c66b(0xbd)](function(_0x457b70){const _0x4e5d39=_0x27c66b;function _0x313739(){const _0x237052=_0x3bce;_0x457b70[_0x237052(0xa1)]<0.2&&!_0x457b70[_0x237052(0x10f)]&&(document[_0x237052(0x7d)][_0x237052(0x12c)][_0x237052(0x12b)](_0x237052(0x149),'0s'),console['log'](_0x237052(0xe1)));}_0x313739(),_0x457b70[_0x4e5d39(0x112)](_0x4e5d39(0x7e),_0x313739),_0x457b70[_0x4e5d39(0x112)](_0x4e5d39(0x130),_0x313739);});function trapFocus(_0xae323d){const _0x119ff4=_0x27c66b;if(!_0xae323d)return;const _0x5f2711=_0xae323d['querySelectorAll'](_0x119ff4(0x140)),_0x50e2be=_0x5f2711[0x0],_0x2752c6=_0x5f2711[_0x5f2711[_0x119ff4(0x109)]-0x1];_0xae323d['addEventListener'](_0x119ff4(0xd1),function(_0x4c1943){const _0x64d7fb=_0x119ff4;if(_0x4c1943[_0x64d7fb(0xc4)]===_0x64d7fb(0xa7)){if(_0x4c1943[_0x64d7fb(0x82)]){if(document[_0x64d7fb(0x8e)]===_0x50e2be){if(_0x2752c6)_0x2752c6[_0x64d7fb(0x9c)]();_0x4c1943[_0x64d7fb(0xa2)]();}}else{if(document[_0x64d7fb(0x8e)]===_0x2752c6){if(_0x50e2be)_0x50e2be[_0x64d7fb(0x9c)]();_0x4c1943[_0x64d7fb(0xa2)]();}}}}),_0x50e2be&&_0x50e2be['focus']();}function addNetworkStatusIndicator(){const _0x3157f6=_0x27c66b,_0x23263e=document['createElement'](_0x3157f6(0x142));_0x23263e['id']='network-status',_0x23263e[_0x3157f6(0x12c)][_0x3157f6(0x81)]='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20position:\x20fixed;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20top:\x2010px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20right:\x2010px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20padding:\x200.5rem\x201rem;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-radius:\x2020px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background:\x20var(--glass-bg);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20backdrop-filter:\x20blur(10px);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border:\x201px\x20solid\x20var(--glass-border);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20var(--text-primary);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x200.8rem;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20z-index:\x201001;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20display:\x20none;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20transition:\x20all\x200.3s\x20ease;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20',document[_0x3157f6(0xd5)][_0x3157f6(0x87)](_0x23263e);function _0x56c243(){const _0x3994cd=_0x3157f6;navigator[_0x3994cd(0x14c)]?(_0x23263e[_0x3994cd(0xc1)]=_0x3994cd(0xdf),_0x23263e['style'][_0x3994cd(0xfb)]=_0x3994cd(0xf0)):(_0x23263e['textContent']='🔴\x20Offline',_0x23263e[_0x3994cd(0x12c)][_0x3994cd(0xfb)]=_0x3994cd(0x119));}window[_0x3157f6(0x112)]('online',_0x56c243),window[_0x3157f6(0x112)](_0x3157f6(0xa6),_0x56c243),_0x56c243();}document['addEventListener'](_0x27c66b(0xd1),function(_0xb5a26f){const _0x3da199=_0x27c66b,_0x70ecdc=document[_0x3da199(0x8e)],_0x2a7611=Array[_0x3da199(0x103)](document[_0x3da199(0xe2)]('.content-card')),_0x2d59ac=_0x2a7611[_0x3da199(0x154)](_0x70ecdc);if(_0xb5a26f['key']===_0x3da199(0x127)&&_0x2d59ac!==-0x1&&_0x2d59ac<_0x2a7611[_0x3da199(0x109)]-0x1)_0x2a7611[_0x2d59ac+0x1][_0x3da199(0x9c)](),_0xb5a26f[_0x3da199(0xa2)]();else{if(_0xb5a26f['key']===_0x3da199(0x13b)&&_0x2d59ac!==-0x1&&_0x2d59ac>0x0)_0x2a7611[_0x2d59ac-0x1][_0x3da199(0x9c)](),_0xb5a26f[_0x3da199(0xa2)]();else{if(_0xb5a26f['key']==='ArrowDown'&&_0x2d59ac!==-0x1){const _0x9ee80=Math['floor'](document[_0x3da199(0x10c)]('.content-row')[_0x3da199(0xc9)]/0xdc),_0x4b0280=_0x2d59ac+_0x9ee80;_0x4b0280<_0x2a7611[_0x3da199(0x109)]&&(_0x2a7611[_0x4b0280][_0x3da199(0x9c)](),_0xb5a26f[_0x3da199(0xa2)]());}else{if(_0xb5a26f['key']===_0x3da199(0x7f)&&_0x2d59ac!==-0x1){const _0x2d3284=Math[_0x3da199(0xf8)](document['querySelector'](_0x3da199(0xb5))[_0x3da199(0xc9)]/0xdc),_0x2eb7c1=_0x2d59ac-_0x2d3284;_0x2eb7c1>=0x0&&(_0x2a7611[_0x2eb7c1][_0x3da199(0x9c)](),_0xb5a26f[_0x3da199(0xa2)]());}else _0xb5a26f[_0x3da199(0xc4)]===_0x3da199(0xa5)&&_0x70ecdc[_0x3da199(0x13d)][_0x3da199(0xb6)]('content-card')&&(_0x70ecdc[_0x3da199(0x148)](),_0xb5a26f['preventDefault']());}}}});function makeContentCardsFocusable(){const _0x13fa62=_0x27c66b,_0x2a9f03=document['querySelectorAll']('.content-card');_0x2a9f03[_0x13fa62(0x94)]((_0x51716d,_0x1758a0)=>{const _0x5da301=_0x13fa62;_0x51716d['setAttribute'](_0x5da301(0xd8),_0x1758a0===0x0?'0':'-1'),_0x51716d[_0x5da301(0xae)](_0x5da301(0x11b),_0x5da301(0xbc)),_0x51716d['setAttribute'](_0x5da301(0x9d),_0x5da301(0x8b)+(_0x51716d[_0x5da301(0x10c)](_0x5da301(0xee))?.[_0x5da301(0x101)]||_0x5da301(0x10a)));});}async function init(){const _0x3163ef=_0x27c66b;try{const _0x1a9fdf=document[_0x3163ef(0x85)](_0x3163ef(0xa3)),_0x570bfb=document[_0x3163ef(0x85)](_0x3163ef(0x100)),_0x142bf0=document[_0x3163ef(0x85)]('load-more-btn'),_0x12124b=document[_0x3163ef(0x85)]('banner-description');if(_0x1a9fdf)_0x1a9fdf[_0x3163ef(0xc1)]=_0x3163ef(0xe0);showLoadingState(_0x3163ef(0x100));if(_0x142bf0)_0x142bf0['style']['display']=_0x3163ef(0xf0);vivamaxMovies=await fetchVivamaxMoviesWithLoading();if(vivamaxMovies['length']>0x0)displayBanner(vivamaxMovies[Math['floor'](Math[_0x3163ef(0x135)]()*Math['min'](vivamaxMovies[_0x3163ef(0x109)],0x5))]),displayListWithFocusable(vivamaxMovies,'movies-list'),updateLoadMoreButtonVisibility();else{_0x570bfb&&(_0x570bfb[_0x3163ef(0xf5)]=_0x3163ef(0x113));if(_0x1a9fdf)_0x1a9fdf[_0x3163ef(0xc1)]=_0x3163ef(0x7a);if(_0x12124b)_0x12124b[_0x3163ef(0xc1)]=_0x3163ef(0xd4);}}catch(_0x43c991){console['error'](_0x3163ef(0xc3),_0x43c991);const _0x411fac=document['getElementById'](_0x3163ef(0xa3)),_0x1d78af=document[_0x3163ef(0x85)](_0x3163ef(0x96)),_0x530a3e=document['getElementById']('movies-list');if(_0x411fac)_0x411fac[_0x3163ef(0xc1)]=_0x3163ef(0x7a);if(_0x1d78af)_0x1d78af[_0x3163ef(0xc1)]=_0x3163ef(0xd4);const _0xeaacb9=_0x3163ef(0xed);if(_0x530a3e)_0x530a3e[_0x3163ef(0xf5)]=_0xeaacb9;}}addNetworkStatusIndicator(),document[_0x27c66b(0x112)]('DOMContentLoaded',function(){const _0x1d052e=_0x27c66b,_0x69a380=document[_0x1d052e(0xe2)](_0x1d052e(0xc7));_0x69a380[_0x1d052e(0x94)](_0x439b8f=>{addHapticFeedback(_0x439b8f,'light');});const _0x287bce=document[_0x1d052e(0xe2)](_0x1d052e(0x90));_0x287bce[_0x1d052e(0x94)](_0x51f678=>{const _0x2b243a=_0x1d052e;_0x51f678['setAttribute']('aria-label',_0x2b243a(0x121));});const _0x175da2=document['querySelector']('.mobile-menu-toggle');_0x175da2&&_0x175da2[_0x1d052e(0xae)]('aria-label',_0x1d052e(0xd9));const _0x4a5d38=document[_0x1d052e(0xe2)](_0x1d052e(0xcb));_0x4a5d38[_0x1d052e(0x94)](_0x5f2a68=>{const _0x53def9=_0x1d052e;_0x5f2a68[_0x53def9(0xae)](_0x53def9(0x11b),_0x53def9(0x116)),_0x5f2a68['setAttribute'](_0x53def9(0xc6),'true');});}),init(),console[_0x27c66b(0x80)](_0x27c66b(0x129));
+        // ==== Anti-debugging for mobile users (modified for responsiveness) ====
+        (function() {
+            'use strict';
+
+            // Function to detect mobile devices
+            function isMobile() {
+                return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                    ('ontouchstart' in window) ||
+                    (navigator.maxTouchPoints > 0);
+            }
+            // Disable right-click context menu (but allow on mobile)
+            document.addEventListener('contextmenu', function(e) {
+                if (!isMobile()) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+            // Disable common keyboard shortcuts for dev tools (desktop only)
+            document.addEventListener('keydown', function(e) {
+                if (!isMobile()) {
+                    if (
+                        e.keyCode === 123 || // F12
+                        (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || // Ctrl+Shift+I/J
+                        (e.ctrlKey && e.keyCode === 85) || // Ctrl+U
+                        (e.ctrlKey && e.shiftKey && e.keyCode === 67)// Ctrl+Shift+C
+                    ) {
+                        e.preventDefault();
+                        showWarning();
+                        return false;
+                    }
+                }
+            });
+            // DevTools detection using timing (desktop only)
+            let devtools = { open: false, orientation: null };
+            const threshold = 160;
+            if (!isMobile()) {
+                setInterval(function() {
+                    if (window.outerHeight - window.innerHeight > threshold ||
+                        window.outerWidth - window.innerWidth > threshold) {
+                        if (!devtools.open) { devtools.open = true; showWarning(); }
+                    } else {
+                        if (devtools.open) { devtools.open = false; hideWarning(); }
+                    }
+                }, 500);
+            }
+            // Console warning message
+            console.log('%cSTOP!', 'color: red; font-size: 50px; font-weight: bold;');
+            console.log('%cThis is a browser feature intended for developers. Unauthorized access to this console may violate the terms of service.', 'color: red; font-size: 16px;');
+            // Detect console usage (desktop only)
+            if (!isMobile()) {
+                let consoleCheck = () => {
+                    let start = new Date();
+                    debugger;
+                    let end = new Date();
+                    if (end - start > 100) {
+                        showWarning();
+                    }
+                };
+                setInterval(() => {
+                    console.clear();
+                    consoleCheck();
+                }, 2000);
+                setInterval(function() {
+                    const start = performance.now();
+                    debugger;
+                    const end = performance.now();
+                    if (end - start > 100) { showWarning(); }
+                }, 1000);
+            }
+            // Disable text selection
+            document.addEventListener('selectstart', function(e) {
+                if (e.target.tagName === 'SCRIPT' || e.target.tagName === 'STYLE') {
+                    e.preventDefault(); return false;
+                }
+            });
+            // Disable drag
+            document.addEventListener('dragstart', e => { e.preventDefault(); return false; });
+            // Warning display functions
+            function showWarning() {
+                const overlay = document.getElementById('warning-overlay');
+                if (overlay) {
+                    overlay.style.display = 'flex';
+                    document.body.style.filter = 'blur(10px)';
+                }
+            }
+            function hideWarning() {
+                const overlay = document.getElementById('warning-overlay');
+                if (overlay) {
+                    overlay.style.display = 'none';
+                    document.body.style.filter = 'none';
+                }
+            }
+            // Obfuscate functions
+            window[atob('c2hvd1dhcm5pbmc=')] = showWarning;
+            window[atob('aGlkZVdhcm5pbmc=')] = hideWarning;
+        })();
+
+        // ==== Mobile menu toggle ====
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('nav-links');
+            const toggleIcon = document.querySelector('.mobile-menu-toggle i');
+            if (navLinks && toggleIcon) {
+                navLinks.classList.toggle('active');
+                if (navLinks.classList.contains('active')) {
+                    toggleIcon.classList.remove('fa-bars');
+                    toggleIcon.classList.add('fa-times');
+                } else {
+                    toggleIcon.classList.remove('fa-times');
+                    toggleIcon.classList.add('fa-bars');
+                }
+            }
+        }
+        function closeMobileMenu() {
+            const navLinks = document.getElementById('nav-links');
+            const toggleIcon = document.querySelector('.mobile-menu-toggle i');
+            if (navLinks && toggleIcon) {
+                navLinks.classList.remove('active');
+                toggleIcon.classList.remove('fa-times');
+                toggleIcon.classList.add('fa-bars');
+            }
+        }
+        document.addEventListener('click', function(e) {
+            const navbar = document.querySelector('.navbar');
+            const navLinks = document.getElementById('nav-links');
+            if (navbar && navLinks && !navbar.contains(e.target) && navLinks.classList.contains('active')) {
+                closeMobileMenu();
+            }
+        });
+
+        // ==== Application variables with obfuscation ====
+        const API_KEY = atob('NDU2MDM5ZWVhNTk2OTFlY2Y4ZGIzMzkyYWZjZWFiZTA=');
+        const BASE_URL = atob('aHR0cHM6Ly9hcGkudGhlbW92aWVkYi5vcmcvMw==');
+        const IMG_URL = atob('aHR0cHM6Ly9pbWFnZS50bWRiLm9yZy90L3Avb3JpZ2luYWw=');
+        const VIVAMAX_COMPANY_ID = 149142;
+        let currentItem;
+        let bannerItem;
+        let vivamaxMovies = [];
+        let currentPage = 1;
+        let totalPages = 1;
+        let isLoading = false;
+
+        // ==== Fetch functions with loading indicator ====
+        function showLoadingState(containerId) {
+            const container = document.getElementById(containerId);
+            if (container) {
+                container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+            } else {
+                console.warn(`Container with id '${containerId}' not found`);
+            }
+        }
+        function setLoadingState(loading) {
+            isLoading = loading;
+            document.querySelectorAll('.loading').forEach(el => {
+                el.style.display = loading ? 'flex' : 'none';
+            });
+        }
+        async function fetchVivamaxMovies(page=1) {
+            try {
+                const res = await fetch(`${BASE_URL}/discover/movie?api_key=${API_KEY}&with_companies=${VIVAMAX_COMPANY_ID}&sort_by=popularity.desc&page=${page}`);
+                const data = await res.json();
+                totalPages = data.total_pages;
+                return data.results;
+            } catch(e) { console.error("Fetch error", e); return []; }
+        }
+        async function fetchVivamaxMoviesWithLoading(page=1) {
+            if (isLoading) return [];
+            setLoadingState(true);
+            try { return await fetchVivamaxMovies(page); }
+            finally { setLoadingState(false); }
+        }
+
+        function displayBanner(item) {
+            bannerItem = item;
+            const banner = document.getElementById('banner');
+            const title = document.getElementById('banner-title');
+            const description = document.getElementById('banner-description');
+            if (banner && title && description) {
+                const imagePath = item.backdrop_path || item.poster_path;
+                banner.style.backgroundImage = imagePath ? `url(${IMG_URL}${imagePath})` : 'none';
+                title.textContent = item.title || item.name || 'Vivamax Content';
+                description.textContent = item.overview || 'Discover amazing content on Vivamax PH';
+            }
+        }
+        function showBannerDetails() {
+            if (bannerItem) showDetails(bannerItem);
+        }
+        function displayList(items, containerId, append=false) {
+            const container = document.getElementById(containerId);
+            if (!container) {
+                console.warn(`Container with id '${containerId}' not found`);
+                return;
+            }
+            if (!append) container.innerHTML = '';
+            if (items.length === 0 && !append) {
+                container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+                return;
+            }
+            items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'content-card';
+                const img = document.createElement('img');
+                img.src = `${IMG_URL}${item.poster_path}`;
+                img.alt = item.title || item.name || 'Content poster';
+                img.onerror = () => { this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4PHJlY3Qgd2lkdGg9IjEwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMzMzIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9ImNlbnRyYWwiPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg=='; };
+                card.appendChild(img);
+                card.onclick = () => showDetails(item);
+                card.addEventListener('touchstart', () => { card.style.transform='scale(0.95)'; });
+                card.addEventListener('touchend', () => { card.style.transform=''; });
+                container.appendChild(card);
+            });
+        }
+        // Focusable list (called after images are rendered)
+        function makeContentCardsFocusable() {
+            document.querySelectorAll('.content-card').forEach((card, index) => {
+                card.setAttribute('tabindex', index===0?'0':'-1');
+                card.setAttribute('role', 'button');
+                const altText = card.querySelector('img')?.alt || 'content';
+                card.setAttribute('aria-label', `View details for ${altText}`);
+            });
+        }
+
+        // Show details modal
+        function showDetails(item) {
+            currentItem = item;
+            const modalTitle = document.getElementById('modal-title');
+            const modalDescription = document.getElementById('modal-description');
+            const modalImage = document.getElementById('modal-image');
+            const modalRating = document.getElementById('modal-rating');
+            const modal = document.getElementById('modal');
+
+            if (modalTitle) modalTitle.textContent= item.title || item.name || 'Untitled';
+            if (modalDescription) modalDescription.textContent= item.overview || 'No description available.';
+            if (modalImage) {
+                modalImage.src= item.poster_path ? `${IMG_URL}${item.poster_path}` : 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4PHJlY3Qgd2lkdGg9IjEwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMzMzIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9ImNlbnRyYWwiPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg==';
+            }
+            const ratingNum = Math.round((item.vote_average || 0)/2);
+            if (modalRating) {
+                modalRating.innerHTML='★'.repeat(ratingNum) + '☆'.repeat(5 - ratingNum) + ` (${(item.vote_average || 0).toFixed(1)}/10)`;
+            }
+            changeServer();
+            if (modal) {
+                modal.style.display='flex';
+                document.body.style.overflow='hidden';
+                setTimeout(()=>{ trapFocus(modal); },100);
+            }
+        }
+        function changeServer() {
+            const serverSelect=document.getElementById('server');
+            const modalVideo=document.getElementById('modal-video');
+            if(!serverSelect || !modalVideo || !currentItem) return;
+            const server=serverSelect.value;
+            const type='movie'; // Always movie
+            let embedURL='';
+            if(server==='vidsrc.cc'){
+                embedURL=`${atob('aHR0cHM6Ly92aWRzcmMuY2MvdjIvZW1iZWQ=')}/${type}/${currentItem.id}`;
+            } else if(server==='vidsrc.me'){
+                embedURL=`${atob('aHR0cHM6Ly92aWRzcmMubmV0L2VtYmVk')}/${type}/?tmdb=${currentItem.id}`;
+            } else if(server==='player.videasy.net'){
+                embedURL=`${atob('aHR0cHM6Ly9wbGF5ZXIudmlkZWFzeS5uZXQ=')}/${type}/${currentItem.id}`;
+            } else if(server==='111movies.com'){
+                embedURL=`${atob('aHR0cHM6Ly9wbGF5ZXIudmlkZWFzeS5uZXQ=')}/${type}/${currentItem.id}`;
+            } else if(server==='moviesapi.to'){
+                embedURL=`${atob('aHR0cHM6Ly9wbGF5ZXIudmlkZWFzeS5uZXQ=')}/${type}/${currentItem.id}`;
+            }
+            modalVideo.src=embedURL;
+        }
+        function closeModal() {
+            const modal=document.getElementById('modal');
+            if(modal){ modal.style.display='none'; }
+            const modalVideo=document.getElementById('modal-video');
+            if(modalVideo){ modalVideo.src=''; }
+            document.body.style.overflow='';
+        }
+        function openSearchModal() {
+            const searchModal=document.getElementById('search-modal');
+            const searchInput=document.getElementById('search-input');
+            if(searchModal){ searchModal.style.display='flex'; }
+            document.body.style.overflow='hidden';
+            setTimeout(()=>{ if(searchInput) { searchInput.focus(); trapFocus(searchModal); } },100);
+            closeMobileMenu();
+        }
+        function closeSearchModal() {
+            const searchModal=document.getElementById('search-modal');
+            const searchResults=document.getElementById('search-results');
+            const searchInput=document.getElementById('search-input');
+            if(searchModal){ searchModal.style.display='none'; }
+            if(searchResults){ searchResults.innerHTML=''; }
+            if(searchInput){ searchInput.value=''; }
+            document.body.style.overflow='';
+        }
+        let searchTimeout;
+        async function searchVivamaxMoviesOnly() {
+            const searchInput=document.getElementById('search-input');
+            const searchResultsContainer=document.getElementById('search-results');
+            if(!searchInput || !searchResultsContainer) return;
+            const query=searchInput.value;
+            if(searchTimeout){ clearTimeout(searchTimeout); }
+            if(!query.trim()){ searchResultsContainer.innerHTML=''; return; }
+            searchTimeout=setTimeout(async ()=> {
+                try {
+                    searchResultsContainer.innerHTML='<div class="loading"><div class="spinner"></div></div>';
+                    const res=await fetch(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(query)}&with_companies=${VIVAMAX_COMPANY_ID}`);
+                    const data=await res.json();
+                    searchResultsContainer.innerHTML='';
+                    const results=data.results.filter(i => i.poster_path);
+                    if(results.length===0){
+                        searchResultsContainer.innerHTML='<p style="text-align:center; color:var(--text-secondary); padding:2rem;">No Vivamax movies found for your search.</p>';
+                        return;
+                    }
+                    results.forEach(i=>{
+                        const img=document.createElement('img');
+                        img.src=`${IMG_URL}${i.poster_path}`;
+                        img.alt=i.title||i.name||'Search result';
+                        img.onerror=()=>{ this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4PHJlY3Qgd2lkdGg9IjEwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMzMzIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9ImNlbnRyYWwiPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg=='; };
+                        img.onclick=()=>{
+                            closeSearchModal();
+                            showDetails(i);
+                        }
+                        img.addEventListener('touchstart', ()=>{ img.style.transform='scale(0.95)'; });
+                        img.addEventListener('touchend', ()=>{ img.style.transform=''; });
+                        searchResultsContainer.appendChild(img);
+                    });
+                } catch(e){ console.error('Search error', e); searchResultsContainer.innerHTML='<p style="text-align:center; color:var(--accent-color); padding:2rem;">Error searching. Please try again.</p>'; }
+            },300);
+        }
+
+        // Show Vivamax content
+        async function showVivamaxContent() {
+            const section=document.getElementById('movies-section');
+            if(section){ section.style.display='block'; }
+            if(vivamaxMovies.length===0){
+                showLoadingState('movies-list');
+                vivamaxMovies=await fetchVivamaxMoviesWithLoading();
+                if(vivamaxMovies.length===0){
+                    const list=document.getElementById('movies-list');
+                    if(list){ list.innerHTML='<p style="text-align:center; color:var(--text-secondary); padding:2rem;">No Vivamax movies available</p>'; }
+                    return;
+                }
+            }
+            displayList(vivamaxMovies, 'movies-list');
+            setTimeout(makeContentCardsFocusable, 100);
+            updateLoadMoreButtonVisibility();
+        }
+
+        async function loadMoreMovies() {
+            if (currentPage<totalPages && !isLoading) {
+                currentPage++;
+                document.getElementById('load-more-spinner').style.display='flex';
+                document.getElementById('load-more-btn').style.display='none';
+                try{
+                    const more=await fetchVivamaxMoviesWithLoading(currentPage);
+                    if(more.length>0){
+                        displayList(more,'movies-list',true);
+                        vivamaxMovies=vivamaxMovies.concat(more);
+                    }
+                } catch(e) { console.error('Load more error', e); }
+                document.getElementById('load-more-spinner').style.display='none';
+                updateLoadMoreButtonVisibility();
+                setTimeout(makeContentCardsFocusable,100);
+            }
+        }
+
+        function updateLoadMoreButtonVisibility() {
+            const btn=document.getElementById('load-more-btn');
+            if(btn){
+                if(currentPage<totalPages){ btn.style.display='block'; }
+                else { btn.style.display='none'; }
+            }
+        }
+
+        // Modal outside click close
+        document.getElementById('modal')?.addEventListener('click', e => { if(e.target===e.currentTarget) closeModal(); });
+        document.getElementById('search-modal')?.addEventListener('click', e => { if(e.target===e.currentTarget) closeSearchModal(); });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', e => {
+            if(e.key==='Escape'){ closeModal(); closeSearchModal(); closeMobileMenu(); }
+            if(e.key==='/' && !e.ctrlKey && !e.metaKey){ openSearchModal(); }
+        });
+
+        // Touch gestures for pull-to-refresh
+        let startY=0; let pullDistance=0; const pullThreshold=100;
+        document.addEventListener('touchstart', e => { if(window.scrollY===0) startY=e.touches[0].pageY; }, {passive:true});
+        document.addEventListener('touchmove', e => {
+            if(startY && window.scrollY===0){
+                pullDistance=e.touches[0].pageY-startY;
+                if(pullDistance>0){
+                    document.body.style.transform=`translateY(${Math.min(pullDistance/3,50)}px)`;
+                }
+            }
+        }, {passive:true});
+        document.addEventListener('touchend', e => {
+            if(pullDistance>pullThreshold){ location.reload(); }
+            document.body.style.transform='';
+            startY=0; pullDistance=0;
+        }, {passive:true});
+
+        // Haptic feedback for buttons
+        function addHapticFeedback(elem,t='light'){ if(!elem) return; elem.addEventListener('click', ()=>{ if('vibrate' in navigator){ switch(t){ case 'light': navigator.vibrate(10); break; case 'medium': navigator.vibrate(20); break; case 'heavy': navigator.vibrate(50); break; } } }); }
+
+        // Add network status indicator
+        function addNetworkStatusIndicator() {
+            const indicator=document.createElement('div');
+            indicator.id='network-status';
+            indicator.style.cssText=`
+                position: fixed; top:10px; right:10px; padding:0.5rem 1rem; border-radius:20px; background:var(--glass-bg); backdrop-filter:blur(10px); border:1px solid var(--glass-border); color:var(--text-primary); font-size:0.8rem; z-index:1001; display:none; transition:all 0.3s ease;
+            `;
+            document.body.appendChild(indicator);
+            function update(){ if(navigator.onLine){ indicator.textContent='🟢 Online'; indicator.style.display='none'; }
+                else { indicator.textContent='🔴 Offline'; indicator.style.display='block'; }
+            }
+            window.addEventListener('online', update);
+            window.addEventListener('offline', update);
+            update();
+        }
+
+        // Keyboard navigation for content cards
+        document.addEventListener('keydown', e => {
+            const focusEl=document.activeElement;
+            const cards=Array.from(document.querySelectorAll('.content-card'));
+            const idx=cards.indexOf(focusEl);
+            if(e.key==='ArrowRight' && idx!==-1 && idx<cards.length-1){ cards[idx+1].focus(); e.preventDefault(); }
+            if(e.key==='ArrowLeft' && idx!==-1 && idx>0){ cards[idx-1].focus(); e.preventDefault(); }
+            if(e.key==='ArrowDown' && idx!==-1){
+                const row= document.querySelector('.content-row');
+                const colCount= Math.floor(row?.offsetWidth/220)||1;
+                const nextIdx=idx+colCount;
+                if(nextIdx<cards.length){ cards[nextIdx].focus(); e.preventDefault(); }
+            }
+            if(e.key==='ArrowUp' && idx!==-1){
+                const row= document.querySelector('.content-row');
+                const colCount= Math.floor(row?.offsetWidth/220)||1;
+                const prevIdx=idx-colCount;
+                if(prevIdx>=0){ cards[prevIdx].focus(); e.preventDefault(); }
+            }
+            if(e.key==='Enter' && focusEl && focusEl.classList.contains('content-card')){
+                focusEl.click(); e.preventDefault();
+            }
+        });
+
+        // Focus trap for modals
+        function trapFocus(el){
+            if(!el) return;
+            const focusable=el.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            const first=focusable[0];
+            const last=focusable[focusable.length-1];
+            el.addEventListener('keydown', e => {
+                if(e.key==='Tab'){
+                    if(e.shiftKey){
+                        if(document.activeElement===first){ if(last) last.focus(); e.preventDefault(); }
+                    } else {
+                        if(document.activeElement===last){ if(first) first.focus(); e.preventDefault(); }
+                    }
+                }
+            });
+            if(first) first.focus();
+        }
+
+        // Initialize
+        async function init() {
+            try {
+                document.getElementById('banner-title').textContent='Loading Vivamax...';
+                showLoadingState('movies-list');
+                document.getElementById('load-more-btn').style.display='none';
+                vivamaxMovies= await fetchVivamaxMoviesWithLoading();
+                if(vivamaxMovies.length>0){
+                    displayBanner(vivamaxMovies[Math.floor(Math.random() * Math.min(5,vivamaxMovies.length))]);
+                    displayList(vivamaxMovies,'movies-list');
+                    setTimeout(makeContentCardsFocusable, 100);
+                    updateLoadMoreButtonVisibility();
+                } else {
+                    document.getElementById('movies-list').innerHTML='<p style="text-align:center; color:var(--text-secondary); padding:2rem;">No Vivamax movies available</p>';
+                    document.getElementById('banner-title').textContent='Welcome to Vivamax PH';
+                    document.getElementById('banner-description').textContent='Unable to load content. Please check your connection and try again.';
+                }
+            } catch(e){
+                console.error('Error in init', e);
+                document.getElementById('banner-title').textContent='Welcome to Vivamax PH';
+                document.getElementById('banner-description').textContent='Unable to load content. Please check your connection and try again.';
+                document.getElementById('movies-list').innerHTML='<p style="text-align:center; color:var(--accent-color); padding:2rem;">Unable to load content. Please refresh the page.</p>';
+            }
+        }
+
+        // ==== DOM Content Loaded Initialization ====
+        document.addEventListener('DOMContentLoaded', ()=> {
+            addNetworkStatusIndicator();
+            // Haptic feedback on buttons
+            document.querySelectorAll('.btn').forEach(btn => addHapticFeedback(btn,'light'));
+            // ARIA labels for close buttons
+            document.querySelectorAll('.close').forEach(btn => btn.setAttribute('aria-label','Close modal'));
+            // ARIA labels for mobile menu toggle
+            const toggleBtn=document.querySelector('.mobile-menu-toggle');
+            if(toggleBtn){ toggleBtn.setAttribute('aria-label','Toggle mobile menu'); }
+            // Role for modals
+            document.querySelectorAll('.modal, .search-modal').forEach(m => {
+                m.setAttribute('role','dialog'); m.setAttribute('aria-modal','true');
+            });
+            init();
+            console.log('Vivamax PH app fully loaded and initialized with mobile responsiveness');
+        });
     </script>
 </body>
 </html>
